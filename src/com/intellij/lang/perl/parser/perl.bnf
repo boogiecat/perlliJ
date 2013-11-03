@@ -1,0 +1,585 @@
+
+{
+  parserClass="com.intellij.lang.perl.parser.PerlParser"
+  parserUtilClass="com.intellij.lang.perl.parser.GeneratedParserUtilBase"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+ 
+  psiClassPrefix="Perl"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.intellij.lang.perl.psi"
+  psiImplPackage="com.intellij.lang.perl.psi.impl"
+ 
+  elementTypeHolderClass="com.intellij.lang.perl.psi.PerlTypes"
+  elementTypeClass="com.intellij.lang.perl.PerlElementType"
+  tokenTypeClass="com.intellij.lang.perl.parser.PerlTokenTypes"
+  elementTypePrefix=""
+
+  tokens=[
+
+//   CORE SYNTAX KEYWORDS
+
+     DATA__ = "__DATA__"
+     END__ = "__END__"
+     FILE__ = "__FILE__"
+     LINE__ = "__LINE__"
+     PACKAGE__ = "__PACKAGE__"
+     AND="and"
+     CMP="cmp"
+     CONTINUE="continue"
+     CORE="CORE"
+     DO="do"
+     ELSE="else"
+     ELSIF="elsif"
+     EQ="eq"
+     EXP="exp"
+     FOR="for"
+     FOREACH="foreach"
+     GE="ge"
+     GT="gt"
+     IF="if"
+     LE="le"
+     LOCK="lock"
+     LT="lt"
+     M="m"
+     NE="ne"
+     NO="no"
+     OR="or"
+     PACKAGE="package"
+     Q="q"
+     QQ="qq"
+     QR="qr"
+     QW="qw"
+     QX="qx"
+     X="x"
+     SUB="sub"
+     TR="tr"
+     UNLESS="unless"
+     UNTIL="until"
+     WHILE="while"
+     XOR="xor"
+     Y="y"
+
+//     FUNCTION NAMES
+    AA_="-A"
+    BB_="-B"
+    CC_="-C"
+    MM_="-M"
+    OO_="-O"
+    RR_="-R"
+    SS_="-S"
+    TT_="-T"
+    WW_="-W"
+    XX_="-X"
+    B_="-b"
+    C_="-c"
+    D_="-d"
+    E_="-e"
+    F_="-f"
+    G_="-g"
+    K_="-k"
+    L_="-l"
+    O_="-o"
+    P_="-p"
+    R_="-r"
+    S_="-s"
+    T_="-t"
+    U_="-u"
+    W_="-w"
+    X_="-x"
+    Z_="-z"
+    AUTOLOAD="AUTOLOAD"
+    BEGIN="BEGIN"
+    CHECK="CHECK"
+    DESTROY="DESTROY"
+    END="END"
+    INIT="INIT"
+    UNITCHECK="UNITCHECK"
+    ABS="abs"
+    ACCEPT="accept"
+    ALARM="alarm"
+    ATAN2="atan2"
+    BIND="bind"
+    BINMODE="binmode"
+    BLESS="bless"
+    BREAK="break"
+    CALLER="caller"
+    CHDIR="chdir"
+    CHMOD="chmod"
+    CHOMP="chomp"
+    CHOP="chop"
+    CHOWN="chown"
+    CHR="chr"
+    CHROOT="chroot"
+    CLOSE="close"
+    CLOSEDIR="closedir"
+    CONNECT="connect"
+    COS="cos"
+    CRYPT="crypt"
+    DBMCLOSE="dbmclose"
+    DBMOPEN="dbmopen"
+    DEFINED="defined"
+    DELETE="delete"
+    DIE="die"
+    DUMP="dump"
+    EACH="each"
+    ENDGRENT="endgrent"
+    ENDHOSTENT="endhostent"
+    ENDNETENT="endnetent"
+    ENDPROTOENT="endprotoent"
+    ENDPWENT="endpwent"
+    ENDSERVENT="endservent"
+    EOF="eof"
+    EVAL="eval"
+    EXEC="exec"
+    EXISTS="exists"
+    EXIT="exit"
+    FCNTL="fcntl"
+    FILENO="fileno"
+    FLOCK="flock"
+    FORK="fork"
+    FORMAT="format"
+    FORMLINE="formline"
+    GETC="getc"
+    GETGRENT="getgrent"
+    GETGRGID="getgrgid"
+    GETGRNAM="getgrnam"
+    GETHOSTBYADDR="gethostbyaddr"
+    GETHOSTBYNAME="gethostbyname"
+    GETHOSTENT="gethostent"
+    GETLOGIN="getlogin"
+    GETNETBYADDR="getnetbyaddr"
+    GETNETBYNAME="getnetbyname"
+    GETNETENT="getnetent"
+    GETPEERNAME="getpeername"
+    GETPGRP="getpgrp"
+    GETPPID="getppid"
+    GETPRIORITY="getpriority"
+    GETPROTOBYNAME="getprotobyname"
+    GETPROTOBYNUMBER="getprotobynumber"
+    GETPROTOENT="getprotoent"
+    GETPWENT="getpwent"
+    GETPWNAM="getpwnam"
+    GETPWUID="getpwuid"
+    GETSERVBYNAME="getservbyname"
+    GETSERVBYPORT="getservbyport"
+    GETSERVENT="getservent"
+    GETSOCKNAME="getsockname"
+    GETSOCKOPT="getsockopt"
+    GLOB="glob"
+    GMTIME="gmtime"
+    GOTO="goto"
+    GREP="grep"
+    HEX="hex"
+    INDEX="index"
+    INT="int"
+    IOCTL="ioctl"
+    JOIN="join"
+    KEYS="keys"
+    KILL="kill"
+    LAST="last"
+    LC="lc"
+    LCFIRST="lcfirst"
+    LENGTH="length"
+    LINK="link"
+    LISTEN="listen"
+    LOCAL="local"
+    LOCALTIME="localtime"
+    LOG="log"
+    LSTAT="lstat"
+    MAP="map"
+    MKDIR="mkdir"
+    MSGCTL="msgctl"
+    MSGGET="msgget"
+    MSGRCV="msgrcv"
+    MSGSND="msgsnd"
+    MY="my"
+    NEXT="next"
+    NOT="not"
+    OCT="oct"
+    OPEN="open"
+    OPENDIR="opendir"
+    ORD="ord"
+    OUR="our"
+    PACK="pack"
+    PIPE="pipe"
+    POP="pop"
+    POS="pos"
+    PRINT="print"
+    PRINTF="printf"
+    PROTOTYPE="prototype"
+    PUSH="push"
+    QUOTEMETA="quotemeta"
+    RAND="rand"
+    READ="read"
+    READDIR="readdir"
+    READLINE="readline"
+    READLINK="readlink"
+    READPIPE="readpipe"
+    RECV="recv"
+    REDO="redo"
+    REF="ref"
+    RENAME="rename"
+    REQUIRE="require"
+    RESET="reset"
+    RETURN="return"
+    REVERSE="reverse"
+    REWINDDIR="rewinddir"
+    RINDEX="rindex"
+    RMDIR="rmdir"
+    SAY="say"
+    SCALAR="scalar"
+    SEEK="seek"
+    SEEKDIR="seekdir"
+    SELECT="select"
+    SEMCTL="semctl"
+    SEMGET="semget"
+    SEMOP="semop"
+    SEND="send"
+    SETGRENT="setgrent"
+    SETHOSTENT="sethostent"
+    SETNETENT="setnetent"
+    SETPGRP="setpgrp"
+    SETPRIORITY="setpriority"
+    SETPROTOENT="setprotoent"
+    SETPWENT="setpwent"
+    SETSERVENT="setservent"
+    SETSOCKOPT="setsockopt"
+    SHIFT="shift"
+    SHMCTL="shmctl"
+    SHMGET="shmget"
+    SHMREAD="shmread"
+    SHMWRITE="shmwrite"
+    SHUTDOWN="shutdown"
+    SIN="sin"
+    SLEEP="sleep"
+    SOCKET="socket"
+    SOCKETPAIR="socketpair"
+    SORT="sort"
+    SPLICE="splice"
+    SPLIT="split"
+    SPRINTF="sprintf"
+    SQRT="sqrt"
+    SRAND="srand"
+    STAT="stat"
+    STATE="state"
+    STUDY="study"
+    SUBSTR="substr"
+    SYMLINK="symlink"
+    SYSCALL="syscall"
+    SYSOPEN="sysopen"
+    SYSREAD="sysread"
+    SYSSEEK="sysseek"
+    SYSTEM="system"
+    SYSWRITE="syswrite"
+    TELL="tell"
+    TELLDIR="telldir"
+    TIE="tie"
+    TIED="tied"
+    TIME="time"
+    TIMES="times"
+    TRUNCATE="truncate"
+    UC="uc"
+    UCFIRST="ucfirst"
+    UMASK="umask"
+    UNDEF="undef"
+    UNLINK="unlink"
+    UNPACK="unpack"
+    UNSHIFT="unshift"
+    UNTIE="untie"
+    USE="use"
+    UTIME="utime"
+    VALUES="values"
+    VEC="vec"
+    WAIT="wait"
+    WAITPID="waitpid"
+    WANTARRAY="wantarray"
+    WARN="warn"
+    WRITE="write"
+  ]
+}
+
+ 
+perlFile ::= item*
+item ::= keyword | function | identifier | stringLiteral | any_comment | ANY_CHAR
+keyword::=  DATA__ |
+                       END__ |
+                       FILE__ |
+                       LINE__ |
+                       PACKAGE__ |
+                       AND |
+                       CMP |
+                       CONTINUE |
+                       CORE |
+                       DO |
+                       ELSE |
+                       ELSIF |
+                       EQ |
+                       EXP |
+                       FOR |
+                       FOREACH |
+                       GE |
+                       GT |
+                       IF |
+                       LE |
+                       LOCK |
+                       LT |
+                       M |
+                       NE |
+                       NO |
+                       OR |
+                       PACKAGE |
+                       Q |
+                       QQ |
+                       QR |
+                       QW |
+                       QX |
+                       X |
+                       SUB |
+                       TR |
+                       UNLESS |
+                       UNTIL |
+                       WHILE |
+                       XOR |
+                       Y
+function::= AA_ |
+            BB_ |
+            CC_|
+            MM_|
+            OO_|
+            RR_|
+            SS_|
+            TT_|
+            WW_|
+            XX_|
+            B_|
+            C_|
+            D_|
+            E_|
+            F_|
+            G_|
+            K_|
+            L_|
+            O_|
+            P_|
+            R_|
+            S_|
+            T_|
+            U_|
+            W_|
+            X_|
+            Z_|
+            AUTOLOAD|
+            BEGIN|
+            CHECK|
+            DESTROY|
+            END|
+            INIT|
+            UNITCHECK|
+            ABS|
+            ACCEPT|
+            ALARM|
+            ATAN2|
+            BIND|
+            BINMODE|
+            BLESS|
+            BREAK|
+            CALLER|
+            CHDIR|
+            CHMOD|
+            CHOMP|
+            CHOP|
+            CHOWN|
+            CHR|
+            CHROOT|
+            CLOSE|
+            CLOSEDIR|
+            CONNECT|
+            COS|
+            CRYPT|
+            DBMCLOSE|
+            DBMOPEN|
+            DEFINED|
+            DELETE|
+            DIE|
+            DUMP|
+            EACH|
+            ENDGRENT|
+            ENDHOSTENT|
+            ENDNETENT|
+            ENDPROTOENT|
+            ENDPWENT|
+            ENDSERVENT|
+            EOF|
+            EVAL|
+            EXEC|
+            EXISTS|
+            EXIT|
+            FCNTL|
+            FILENO|
+            FLOCK|
+            FORK|
+            FORMAT|
+            FORMLINE|
+            GETC|
+            GETGRENT|
+            GETGRGID|
+            GETGRNAM|
+            GETHOSTBYADDR|
+            GETHOSTBYNAME|
+            GETHOSTENT|
+            GETLOGIN|
+            GETNETBYADDR|
+            GETNETBYNAME|
+            GETNETENT|
+            GETPEERNAME|
+            GETPGRP|
+            GETPPID|
+            GETPRIORITY|
+            GETPROTOBYNAME|
+            GETPROTOBYNUMBER|
+            GETPROTOENT|
+            GETPWENT|
+            GETPWNAM|
+            GETPWUID|
+            GETSERVBYNAME|
+            GETSERVBYPORT|
+            GETSERVENT|
+            GETSOCKNAME|
+            GETSOCKOPT|
+            GLOB|
+            GMTIME|
+            GOTO|
+            GREP|
+            HEX|
+            INDEX|
+            INT|
+            IOCTL|
+            JOIN|
+            KEYS|
+            KILL|
+            LAST|
+            LC|
+            LCFIRST|
+            LENGTH|
+            LINK|
+            LISTEN|
+            LOCAL|
+            LOCALTIME|
+            LOG|
+            LSTAT|
+            MAP|
+            MKDIR|
+            MSGCTL|
+            MSGGET|
+            MSGRCV|
+            MSGSND|
+            MY|
+            NEXT|
+            NOT|
+            OCT|
+            OPEN|
+            OPENDIR|
+            ORD|
+            OUR|
+            PACK|
+            PIPE|
+            POP|
+            POS|
+            PRINT|
+            PRINTF|
+            PROTOTYPE|
+            PUSH|
+            QUOTEMETA|
+            RAND|
+            READ|
+            READDIR|
+            READLINE|
+            READLINK|
+            READPIPE|
+            RECV|
+            REDO|
+            REF|
+            RENAME|
+            REQUIRE|
+            RESET|
+            RETURN|
+            REVERSE|
+            REWINDDIR|
+            RINDEX|
+            RMDIR|
+            SAY|
+            SCALAR|
+            SEEK|
+            SEEKDIR|
+            SELECT|
+            SEMCTL|
+            SEMGET|
+            SEMOP|
+            SEND|
+            SETGRENT|
+            SETHOSTENT|
+            SETNETENT|
+            SETPGRP|
+            SETPRIORITY|
+            SETPROTOENT|
+            SETPWENT|
+            SETSERVENT|
+            SETSOCKOPT|
+            SHIFT|
+            SHMCTL|
+            SHMGET|
+            SHMREAD|
+            SHMWRITE|
+            SHUTDOWN|
+            SIN|
+            SLEEP|
+            SOCKET|
+            SOCKETPAIR|
+            SORT|
+            SPLICE|
+            SPLIT|
+            SPRINTF|
+            SQRT|
+            SRAND|
+            STAT|
+            STATE|
+            STUDY|
+            SUBSTR|
+            SYMLINK|
+            SYSCALL|
+            SYSOPEN|
+            SYSREAD|
+            SYSSEEK|
+            SYSTEM|
+            SYSWRITE|
+            TELL|
+            TELLDIR|
+            TIE|
+            TIED|
+            TIME|
+            TIMES|
+            TRUNCATE|
+            UC|
+            UCFIRST|
+            UMASK|
+            UNDEF|
+            UNLINK|
+            UNPACK|
+            UNSHIFT|
+            UNTIE|
+            USE|
+            UTIME|
+            VALUES|
+            VEC|
+            WAIT|
+            WAITPID|
+            WANTARRAY|
+            WARN|
+            WRITE
+
+private identifier::= IDENTIFIER
+
+stringLiteral::= DOUBLE_QUOTED_STRING | SINGLE_QUOTED_STRING
+any_comment ::= COMMENT
+
