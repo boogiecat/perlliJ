@@ -18,6 +18,11 @@
   tokens=[
 //  SPECIAL SYMBOLS
      SEMICOLON = ";"
+     DOLLAR = "$"
+     AT = "@"
+     PERCENT = "%"
+     AMPERSAND = "&"
+     STAR = "*"
 
 //   CORE SYNTAX KEYWORDS
 

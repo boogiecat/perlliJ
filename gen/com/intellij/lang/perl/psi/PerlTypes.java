@@ -20,8 +20,10 @@ public interface PerlTypes {
   IElementType ABS = new PerlTokenTypes("abs");
   IElementType ACCEPT = new PerlTokenTypes("accept");
   IElementType ALARM = new PerlTokenTypes("alarm");
+  IElementType AMPERSAND = new PerlTokenTypes("&");
   IElementType AND = new PerlTokenTypes("and");
   IElementType ANY_CHAR = new PerlTokenTypes("ANY_CHAR");
+  IElementType AT = new PerlTokenTypes("@");
   IElementType ATAN2 = new PerlTokenTypes("atan2");
   IElementType AUTOLOAD = new PerlTokenTypes("AUTOLOAD");
   IElementType BB_ = new PerlTokenTypes("-B");
@@ -59,6 +61,7 @@ public interface PerlTypes {
   IElementType DESTROY = new PerlTokenTypes("DESTROY");
   IElementType DIE = new PerlTokenTypes("die");
   IElementType DO = new PerlTokenTypes("do");
+  IElementType DOLLAR = new PerlTokenTypes("$");
   IElementType DOUBLE_QUOTED_STRING = new PerlTokenTypes("DOUBLE_QUOTED_STRING");
   IElementType DUMP = new PerlTokenTypes("dump");
   IElementType D_ = new PerlTokenTypes("-d");
@@ -174,6 +177,7 @@ public interface PerlTypes {
   IElementType PACK = new PerlTokenTypes("pack");
   IElementType PACKAGE = new PerlTokenTypes("package");
   IElementType PACKAGE__ = new PerlTokenTypes("__PACKAGE__");
+  IElementType PERCENT = new PerlTokenTypes("%");
   IElementType PIPE = new PerlTokenTypes("pipe");
   IElementType POP = new PerlTokenTypes("pop");
   IElementType POS = new PerlTokenTypes("pos");
@@ -244,6 +248,7 @@ public interface PerlTypes {
   IElementType SQRT = new PerlTokenTypes("sqrt");
   IElementType SRAND = new PerlTokenTypes("srand");
   IElementType SS_ = new PerlTokenTypes("-S");
+  IElementType STAR = new PerlTokenTypes("*");
   IElementType STAT = new PerlTokenTypes("stat");
   IElementType STATE = new PerlTokenTypes("state");
   IElementType STUDY = new PerlTokenTypes("study");
