@@ -16,6 +16,8 @@
   elementTypePrefix=""
 
   tokens=[
+//  SPECIAL SYMBOLS
+     SEMICOLON = ";"
 
 //   CORE SYNTAX KEYWORDS
 
@@ -300,7 +302,13 @@
 }
 
  
-perlFile ::= item*
+perlFile ::= statementsAndDeclarations
+private statementsAndDeclarations ::= (statement | declaration)*
+statement::= item+ SEMICOLON {pin=2}
+declaration::= variableDeclaration | subroutineDeclaration
+//variableDeclaration ::=
+
+
 private item ::= keyword | function | identifier | stringLiteral | any_comment | ANY_CHAR
 keyword::=  DATA__ |
                        END__ |

@@ -43,6 +43,8 @@ IDENTIFIER=[a-zA-Z][\_a-zA-Z0-9_]*
   {DOUBLE_QUOTED_STRING} {return DOUBLE_QUOTED_STRING;}
   {SINGLE_QUOTED_STRING} {return SINGLE_QUOTED_STRING;}
   {COMMENT} {return COMMENT; }
+  ";"       {return SEMICOLON; }
+
 //  KEYWORDS
   "__DATA__" {return DATA__;}
   "__END__" {return END__;}

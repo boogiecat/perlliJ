@@ -7,11 +7,19 @@ import com.intellij.psi.PsiElement;
 
 public class PerlVisitor extends PsiElementVisitor {
 
+  public void visitDeclaration(@NotNull PerlDeclaration o) {
+    visitPsiElement(o);
+  }
+
   public void visitFunction(@NotNull PerlFunction o) {
     visitPsiElement(o);
   }
 
   public void visitKeyword(@NotNull PerlKeyword o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStatement(@NotNull PerlStatement o) {
     visitPsiElement(o);
   }
 

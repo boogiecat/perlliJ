@@ -20,11 +20,17 @@ public class PerlParser implements PsiParser {
     int level_ = 0;
     boolean result_;
     builder_ = adapt_builder_(root_, builder_, this, null);
-    if (root_ == FUNCTION) {
+    if (root_ == DECLARATION) {
+      result_ = declaration(builder_, level_ + 1);
+    }
+    else if (root_ == FUNCTION) {
       result_ = function(builder_, level_ + 1);
     }
     else if (root_ == KEYWORD) {
       result_ = keyword(builder_, level_ + 1);
+    }
+    else if (root_ == STATEMENT) {
+      result_ = statement(builder_, level_ + 1);
     }
     else if (root_ == STRING_LITERAL) {
       result_ = stringLiteral(builder_, level_ + 1);
@@ -45,6 +51,20 @@ public class PerlParser implements PsiParser {
   // COMMENT
   static boolean any_comment(PsiBuilder builder_, int level_) {
     return consumeToken(builder_, COMMENT);
+  }
+
+  /* ********************************************************** */
+  // variableDeclaration | subroutineDeclaration
+  public static boolean declaration(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "declaration")) return false;
+    if (!nextTokenIs(builder_, SUBROUTINEDECLARATION) && !nextTokenIs(builder_, VARIABLEDECLARATION)
+        && replaceVariants(builder_, 2, "<declaration>")) return false;
+    boolean result_ = false;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, "<declaration>");
+    result_ = consumeToken(builder_, VARIABLEDECLARATION);
+    if (!result_) result_ = consumeToken(builder_, SUBROUTINEDECLARATION);
+    exit_section_(builder_, level_, marker_, DECLARATION, result_, false, null);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -638,20 +658,71 @@ public class PerlParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // item*
+  // statementsAndDeclarations
   static boolean perlFile(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "perlFile")) return false;
+    return statementsAndDeclarations(builder_, level_ + 1);
+  }
+
+  /* ********************************************************** */
+  // item+ SEMICOLON
+  public static boolean statement(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "statement")) return false;
+    boolean result_ = false;
+    boolean pinned_ = false;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, "<statement>");
+    result_ = statement_0(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, SEMICOLON);
+    pinned_ = result_; // pin = 2
+    exit_section_(builder_, level_, marker_, STATEMENT, result_, pinned_, null);
+    return result_ || pinned_;
+  }
+
+  // item+
+  private static boolean statement_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "statement_0")) return false;
+    boolean result_ = false;
+    Marker marker_ = enter_section_(builder_);
+    result_ = item(builder_, level_ + 1);
     int offset_ = builder_.getCurrentOffset();
-    while (true) {
+    while (result_) {
       if (!item(builder_, level_ + 1)) break;
       int next_offset_ = builder_.getCurrentOffset();
       if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "perlFile");
+        empty_element_parsed_guard_(builder_, offset_, "statement_0");
+        break;
+      }
+      offset_ = next_offset_;
+    }
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // (statement | declaration)*
+  static boolean statementsAndDeclarations(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "statementsAndDeclarations")) return false;
+    int offset_ = builder_.getCurrentOffset();
+    while (true) {
+      if (!statementsAndDeclarations_0(builder_, level_ + 1)) break;
+      int next_offset_ = builder_.getCurrentOffset();
+      if (offset_ == next_offset_) {
+        empty_element_parsed_guard_(builder_, offset_, "statementsAndDeclarations");
         break;
       }
       offset_ = next_offset_;
     }
     return true;
+  }
+
+  // statement | declaration
+  private static boolean statementsAndDeclarations_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "statementsAndDeclarations_0")) return false;
+    boolean result_ = false;
+    Marker marker_ = enter_section_(builder_);
+    result_ = statement(builder_, level_ + 1);
+    if (!result_) result_ = declaration(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
   }
 
   /* ********************************************************** */

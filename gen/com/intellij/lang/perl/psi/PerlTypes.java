@@ -10,8 +10,10 @@ import com.intellij.lang.perl.psi.impl.*;
 
 public interface PerlTypes {
 
+  IElementType DECLARATION = new PerlElementType("DECLARATION");
   IElementType FUNCTION = new PerlElementType("FUNCTION");
   IElementType KEYWORD = new PerlElementType("KEYWORD");
+  IElementType STATEMENT = new PerlElementType("STATEMENT");
   IElementType STRING_LITERAL = new PerlElementType("STRING_LITERAL");
 
   IElementType AA_ = new PerlTokenTypes("-A");
@@ -212,6 +214,7 @@ public interface PerlTypes {
   IElementType SELECT = new PerlTokenTypes("select");
   IElementType SEMCTL = new PerlTokenTypes("semctl");
   IElementType SEMGET = new PerlTokenTypes("semget");
+  IElementType SEMICOLON = new PerlTokenTypes(";");
   IElementType SEMOP = new PerlTokenTypes("semop");
   IElementType SEND = new PerlTokenTypes("send");
   IElementType SETGRENT = new PerlTokenTypes("setgrent");
@@ -245,6 +248,7 @@ public interface PerlTypes {
   IElementType STATE = new PerlTokenTypes("state");
   IElementType STUDY = new PerlTokenTypes("study");
   IElementType SUB = new PerlTokenTypes("sub");
+  IElementType SUBROUTINEDECLARATION = new PerlTokenTypes("subroutineDeclaration");
   IElementType SUBSTR = new PerlTokenTypes("substr");
   IElementType SYMLINK = new PerlTokenTypes("symlink");
   IElementType SYSCALL = new PerlTokenTypes("syscall");
@@ -279,6 +283,7 @@ public interface PerlTypes {
   IElementType UTIME = new PerlTokenTypes("utime");
   IElementType U_ = new PerlTokenTypes("-u");
   IElementType VALUES = new PerlTokenTypes("values");
+  IElementType VARIABLEDECLARATION = new PerlTokenTypes("variableDeclaration");
   IElementType VEC = new PerlTokenTypes("vec");
   IElementType WAIT = new PerlTokenTypes("wait");
   IElementType WAITPID = new PerlTokenTypes("waitpid");
@@ -298,11 +303,17 @@ public interface PerlTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-       if (type == FUNCTION) {
+       if (type == DECLARATION) {
+        return new PerlDeclarationImpl(node);
+      }
+      else if (type == FUNCTION) {
         return new PerlFunctionImpl(node);
       }
       else if (type == KEYWORD) {
         return new PerlKeywordImpl(node);
+      }
+      else if (type == STATEMENT) {
+        return new PerlStatementImpl(node);
       }
       else if (type == STRING_LITERAL) {
         return new PerlStringLiteralImpl(node);
