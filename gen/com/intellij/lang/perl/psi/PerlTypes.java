@@ -10,9 +10,7 @@ import com.intellij.lang.perl.psi.impl.*;
 
 public interface PerlTypes {
 
-  IElementType ANY_COMMENT = new PerlElementType("ANY_COMMENT");
   IElementType FUNCTION = new PerlElementType("FUNCTION");
-  IElementType ITEM = new PerlElementType("ITEM");
   IElementType KEYWORD = new PerlElementType("KEYWORD");
   IElementType STRING_LITERAL = new PerlElementType("STRING_LITERAL");
 
@@ -300,14 +298,8 @@ public interface PerlTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-       if (type == ANY_COMMENT) {
-        return new PerlAnyCommentImpl(node);
-      }
-      else if (type == FUNCTION) {
+       if (type == FUNCTION) {
         return new PerlFunctionImpl(node);
-      }
-      else if (type == ITEM) {
-        return new PerlItemImpl(node);
       }
       else if (type == KEYWORD) {
         return new PerlKeywordImpl(node);

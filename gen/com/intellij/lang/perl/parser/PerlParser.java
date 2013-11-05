@@ -20,14 +20,8 @@ public class PerlParser implements PsiParser {
     int level_ = 0;
     boolean result_;
     builder_ = adapt_builder_(root_, builder_, this, null);
-    if (root_ == ANY_COMMENT) {
-      result_ = any_comment(builder_, level_ + 1);
-    }
-    else if (root_ == FUNCTION) {
+    if (root_ == FUNCTION) {
       result_ = function(builder_, level_ + 1);
-    }
-    else if (root_ == ITEM) {
-      result_ = item(builder_, level_ + 1);
     }
     else if (root_ == KEYWORD) {
       result_ = keyword(builder_, level_ + 1);
@@ -49,14 +43,8 @@ public class PerlParser implements PsiParser {
 
   /* ********************************************************** */
   // COMMENT
-  public static boolean any_comment(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "any_comment")) return false;
-    if (!nextTokenIs(builder_, COMMENT)) return false;
-    boolean result_ = false;
-    Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, COMMENT);
-    exit_section_(builder_, marker_, ANY_COMMENT, result_);
-    return result_;
+  static boolean any_comment(PsiBuilder builder_, int level_) {
+    return consumeToken(builder_, COMMENT);
   }
 
   /* ********************************************************** */
@@ -546,17 +534,17 @@ public class PerlParser implements PsiParser {
 
   /* ********************************************************** */
   // keyword | function | identifier | stringLiteral | any_comment | ANY_CHAR
-  public static boolean item(PsiBuilder builder_, int level_) {
+  static boolean item(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "item")) return false;
     boolean result_ = false;
-    Marker marker_ = enter_section_(builder_, level_, _NONE_, "<item>");
+    Marker marker_ = enter_section_(builder_);
     result_ = keyword(builder_, level_ + 1);
     if (!result_) result_ = function(builder_, level_ + 1);
     if (!result_) result_ = identifier(builder_, level_ + 1);
     if (!result_) result_ = stringLiteral(builder_, level_ + 1);
     if (!result_) result_ = any_comment(builder_, level_ + 1);
     if (!result_) result_ = consumeToken(builder_, ANY_CHAR);
-    exit_section_(builder_, level_, marker_, ITEM, result_, false, null);
+    exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 

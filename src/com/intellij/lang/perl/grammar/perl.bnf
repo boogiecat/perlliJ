@@ -301,7 +301,7 @@
 
  
 perlFile ::= item*
-item ::= keyword | function | identifier | stringLiteral | any_comment | ANY_CHAR
+private item ::= keyword | function | identifier | stringLiteral | any_comment | ANY_CHAR
 keyword::=  DATA__ |
                        END__ |
                        FILE__ |
@@ -581,5 +581,5 @@ function::= AA_ |
 private identifier::= IDENTIFIER
 
 stringLiteral::= DOUBLE_QUOTED_STRING | SINGLE_QUOTED_STRING
-any_comment ::= COMMENT
+private  any_comment ::= COMMENT
 

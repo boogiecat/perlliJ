@@ -7,15 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public class PerlVisitor extends PsiElementVisitor {
 
-  public void visitAnyComment(@NotNull PerlAnyComment o) {
-    visitPsiElement(o);
-  }
-
   public void visitFunction(@NotNull PerlFunction o) {
-    visitPsiElement(o);
-  }
-
-  public void visitItem(@NotNull PerlItem o) {
     visitPsiElement(o);
   }
 
