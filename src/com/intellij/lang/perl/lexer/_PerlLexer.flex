@@ -1,5 +1,7 @@
 package com.intellij.lang.perl.lexer;
 import com.intellij.lexer.*;
+import com.intellij.lang.perl.lexer.StatesManager;
+import java.util.Stack;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import static com.intellij.lang.perl.psi.PerlTypes.*;
@@ -18,6 +20,60 @@ import static com.intellij.lang.perl.psi.PerlTypes.*;
 %function advance
 %type IElementType
 %unicode
+
+%{
+
+  private IElementType characterClassType;
+
+  private final Stack<Integer> stack = new Stack<Integer>();
+
+  /**
+   * Push the actual state on top of the stack
+   */
+  private void pushState() {
+    stack.push(yystate());
+  }
+
+  /**
+   * Push the actual state on top of the stack
+   * and change into another state
+   *
+   * @param state The new state
+   */
+  private void pushStateAndBegin(int state) {
+    stack.push(yystate());
+    yybegin(state);
+  }
+
+  /**
+   * Pop the last state from the stack and change to it.
+   * If the stack is empty, go to YYINITIAL
+   */
+  private void popState() {
+    if (!stack.empty()) {
+      yybegin(stack.pop());
+    } else {
+      yybegin(YYINITIAL);
+    }
+  }
+
+  /**
+   * Push the stream back to the position before the text match
+   *
+   * @param text The text to match
+   * @return true when matched
+   */
+  private boolean pushBackTo(String text) {
+    final int position = yytext().toString().indexOf(text);
+
+    if (position != -1) {
+      yypushback(yylength() - position);
+      return true;
+    }
+
+    return false;
+  }
+%}
 
 //COMMENTS TABS AND EOLS
 EOL="\r"|"\n"|"\r\n"
